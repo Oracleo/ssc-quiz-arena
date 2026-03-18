@@ -109,23 +109,13 @@ class AboutScreen extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    context.goldColor,
-                                    context.goldColor
-                                        .withValues(alpha: 0.7),
-                                  ],
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Icon(
-                                Icons.business_rounded,
-                                color: Colors.white,
-                                size: 20,
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                'assets/branding/devnetra_logo.png',
+                                width: 44,
+                                height: 44,
+                                fit: BoxFit.contain,
                               ),
                             ),
                             const SizedBox(height: 8),
