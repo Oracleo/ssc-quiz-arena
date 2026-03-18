@@ -21,13 +21,11 @@ class Topic {
   final String id;
   final String label;
   final int qCount;
-  final List<Question> localQuestions;
 
   const Topic({
     required this.id,
     required this.label,
     required this.qCount,
-    this.localQuestions = const [],
   });
 }
 

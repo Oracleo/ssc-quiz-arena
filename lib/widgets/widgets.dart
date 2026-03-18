@@ -909,6 +909,7 @@ class ProfilePanel extends StatelessWidget {
                       icon: Icons.login_rounded,
                       label: 'Sign in with Google',
                       onTap: () async {
+                        final messenger = ScaffoldMessenger.of(context);
                         final confirmed = await showDialog<bool>(
                           context: context,
                           builder: (ctx) => AlertDialog(
@@ -928,10 +929,9 @@ class ProfilePanel extends StatelessWidget {
                           ),
                         );
                         if (confirmed != true) return;
-                        final messenger = ScaffoldMessenger.of(context);
                         onClose();
                         final success = await app.signInWithGoogle();
-                        if (!success && context.mounted) {
+                        if (!success) {
                           final error = app.lastSignInError;
                           messenger.showSnackBar(
                             SnackBar(

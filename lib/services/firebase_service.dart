@@ -197,23 +197,7 @@ class FirebaseService {
     }
   }
 
-  /// Fetches the latest active announcement text from Firestore (legacy).
-  Future<String?> getLatestAnnouncement() async {
-    try {
-      final snap = await _db
-          .collection('announcements')
-          .where('active', isEqualTo: true)
-          .orderBy('createdAt', descending: true)
-          .limit(1)
-          .get();
 
-      if (snap.docs.isEmpty) return null;
-      return snap.docs.first.data()['text'] as String?;
-    } catch (e) {
-      debugPrint('getLatestAnnouncement error: $e');
-      return null;
-    }
-  }
 
   /// Generates a community leaderboard blending real users from Firestore
   /// with simulated participants so the board always feels alive.
