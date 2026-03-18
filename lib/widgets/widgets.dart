@@ -932,10 +932,15 @@ class ProfilePanel extends StatelessWidget {
                         onClose();
                         final success = await app.signInWithGoogle();
                         if (!success && context.mounted) {
+                          final error = app.lastSignInError;
                           messenger.showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('Google Sign-In is not configured yet.'),
+                            SnackBar(
+                              content: Text(
+                                error != null
+                                    ? 'Sign-in failed: $error'
+                                    : 'Sign-in cancelled.',
+                              ),
+                              duration: const Duration(seconds: 5),
                             ),
                           );
                         }

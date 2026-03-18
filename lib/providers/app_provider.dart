@@ -85,11 +85,17 @@ class AppProvider extends ChangeNotifier {
     _persistToCloud();
   }
 
+  String? _lastSignInError;
+  String? get lastSignInError => _lastSignInError;
+
   Future<bool> signInWithGoogle() async {
+    _lastSignInError = null;
     try {
       final cred = await FirebaseService.instance.signInWithGoogle();
       return cred != null;
-    } catch (_) {
+    } catch (e) {
+      _lastSignInError = e.toString();
+      debugPrint('signInWithGoogle error: $e');
       return false;
     }
   }
