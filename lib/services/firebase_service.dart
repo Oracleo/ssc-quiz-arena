@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../core/constants.dart';
 import '../models/models.dart';
 import 'announcement_config.dart' as announcement;
 
@@ -163,8 +164,9 @@ class FirebaseService {
         if (jsConfig != null) return jsConfig;
       } catch (_) {}
     }
-    // Fallback to Firestore
-    return _getFirestoreAnnouncement();
+    // Try Firestore, fall back to embedded default
+    final firestoreConfig = await _getFirestoreAnnouncement();
+    return firestoreConfig ?? kDefaultAnnouncement;
   }
 
   Map<String, dynamic>? _getJsAnnouncementConfig() {

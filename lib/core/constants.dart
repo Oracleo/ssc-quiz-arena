@@ -70,3 +70,15 @@ const bool kEnableGoogleSignIn = true;
 const bool kEnableCommunityLeaderboard = true;
 const bool kEnableRemoteQuestionBank = true;
 const bool kEnableCloudFeatures = true;
+
+/// Default announcement shown when Firestore has no active announcement.
+/// Keep in sync with web/announcement.js.
+const Map<String, dynamic> kDefaultAnnouncement = {
+  'enabled': true,
+  'type': 'promo',
+  'icon': '📚',
+  'title': "India's Most Complete SSC Question Bank",
+  'subtitle':
+      'All premium GK books — Lucent, Arihant, Vision IAS — combined into one free platform. 10 subjects · 500+ questions · Updated regularly.',
+  'badge': 'FREE ACCESS',
+};
