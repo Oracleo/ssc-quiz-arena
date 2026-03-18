@@ -197,9 +197,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               constraints.maxHeight - (vSpacing * (rows - 1));
                           final tileW = availW / cols;
                           final rawTileH = availH / rows;
-                          final tileH = kIsWeb
-                              ? rawTileH
-                              : math.min(rawTileH, tileW * 1.15);
+                          // On wide screens (desktop browser) use full height;
+                          // on narrow screens (mobile/Chrome) cap to near-square
+                          final isNarrow = constraints.maxWidth < 600;
+                          final tileH = isNarrow
+                              ? math.min(rawTileH, tileW * 1.15)
+                              : rawTileH;
 
                           return Wrap(
                             spacing: hSpacing,

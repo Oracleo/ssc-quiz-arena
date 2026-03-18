@@ -44,7 +44,9 @@ class FirebaseService {
         final provider = GoogleAuthProvider();
         return await _auth.signInWithPopup(provider);
       } else {
-        final googleUser = await GoogleSignIn().signIn();
+        final googleUser = await GoogleSignIn(
+          serverClientId: '194870317270-73m50ih6649tji25d90h6ukifmk8cdgu.apps.googleusercontent.com',
+        ).signIn();
         if (googleUser == null) return null;
         final googleAuth = await googleUser.authentication;
         final credential = GoogleAuthProvider.credential(
