@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- android/app/src/main/res/values/styles.xml -->
+<resources>
+    <!-- Launch theme: dark background to avoid white flash on startup -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <!-- Normal app theme after launch -->
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>

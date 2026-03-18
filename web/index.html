@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta
+    name="description"
+    content="SSC Quiz Arena - premium SSC CGL MCQ practice for History, Geography, Polity, Economy, and more."
+  >
+  <meta name="theme-color" content="#07111D">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="SSC Quiz Arena">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <title>SSC Quiz Arena</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #07111D 0%, #0D1B2D 52%, #07111D 100%);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      color: #FFB74D;
+      background:
+        radial-gradient(circle at top left, rgba(36, 80, 138, 0.32), transparent 32%),
+        radial-gradient(circle at top right, rgba(255, 183, 77, 0.18), transparent 26%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      background: rgba(16, 34, 56, 0.68);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-copy strong {
+      font-size: 18px;
+      line-height: 1.1;
+      color: #F7F5EF;
+    }
+
+    .brand-copy span {
+      font-size: 12px;
+      color: #9EADC4;
+    }
+
+    .spinner {
+      width: 42px;
+      height: 42px;
+      border: 3px solid rgba(255, 183, 77, 0.18);
+      border-top-color: #FFB74D;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="brand">
+      <img src="icons/Icon-192.png" alt="SSC Quiz Arena logo">
+      <div class="brand-copy">
+        <strong>SSC Quiz Arena</strong>
+        <span>Sharper drills. Faster launch.</span>
+      </div>
+    </div>
+    <div class="spinner"></div>
+    <span style="font-size:13px;color:#9EADC4;">Preparing your study arena...</span>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var loading = document.getElementById('loading');
+      if (loading) loading.remove();
+    });
+  </script>
+
+  <script src="announcement.js"></script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
