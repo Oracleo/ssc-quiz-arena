@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../data/subjects_data.dart';
 import '../models/models.dart';
 import '../services/firebase_service.dart';
 
@@ -20,6 +21,10 @@ class AppProvider extends ChangeNotifier {
   bool _loadingUser = true;
   StreamSubscription? _authSub;
 
+  // Live question counts from Firestore: "subjectId/partId/topicId" → count
+  Map<String, int> _liveCounts = {};
+  bool _liveCountsLoaded = false;
+
   AppUser? get user => _user;
   bool get isDarkMode => _isDarkMode;
   int get xp => _xp;
@@ -27,12 +32,42 @@ class AppProvider extends ChangeNotifier {
   Map<String, TopicProgress> get progress => Map.unmodifiable(_progress);
   bool get loadingUser => _loadingUser;
   bool get isLoggedIn => _user != null;
+  bool get liveCountsLoaded => _liveCountsLoaded;
+
+  /// Get live question count for a topic. Returns 0 if not yet loaded.
+  int liveTopicCount(String subjectId, String partId, String topicId) =>
+      _liveCounts['$subjectId/$partId/$topicId'] ?? 0;
+
+  /// Total live questions across all subjects.
+  int get liveTotalQuestions =>
+      _liveCounts.values.fold(0, (sum, c) => sum + c);
+
+  /// Live question total for a specific subject.
+  int liveSubjectTotal(String subjectId) {
+    int total = 0;
+    for (final entry in _liveCounts.entries) {
+      if (entry.key.startsWith('$subjectId/')) total += entry.value;
+    }
+    return total;
+  }
+
+  /// Live question total for a specific part.
+  int livePartTotal(String subjectId, String partId) {
+    int total = 0;
+    for (final entry in _liveCounts.entries) {
+      if (entry.key.startsWith('$subjectId/$partId/')) total += entry.value;
+    }
+    return total;
+  }
 
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
     _isDarkMode = prefs.getBool(_themeKey) ?? true;
     await _restoreGuestState(prefs);
     notifyListeners();
+
+    // Fetch live question counts from Firestore
+    fetchLiveCounts();
 
     _authSub = FirebaseService.instance.authStateChanges.listen((user) async {
       _loadingUser = false;
@@ -45,6 +80,30 @@ class AppProvider extends ChangeNotifier {
       }
       notifyListeners();
     });
+  }
+
+  /// Fetches live question counts for every topic from Firestore.
+  Future<void> fetchLiveCounts() async {
+    final fs = FirebaseService.instance;
+    final counts = <String, int>{};
+
+    for (final entry in subjectsData.entries) {
+      final subjectId = entry.key;
+      for (final part in entry.value.parts) {
+        for (final topic in part.topics) {
+          final count = await fs.fetchTopicQuestionCount(
+            subjectId,
+            part.id,
+            topic.id,
+          );
+          counts['$subjectId/${part.id}/${topic.id}'] = count;
+        }
+      }
+    }
+
+    _liveCounts = counts;
+    _liveCountsLoaded = true;
+    notifyListeners();
   }
 
   Future<void> _loadCloudProgress(String uid, SharedPreferences prefs) async {

@@ -125,6 +125,25 @@ class FirebaseService {
 
   // ─── Questions ────────────────────────────────────────────
 
+  /// Fetches live question count for a single topic.
+  Future<int> fetchTopicQuestionCount(
+    String subjectId,
+    String partId,
+    String topicId,
+  ) async {
+    try {
+      final snap = await _db
+          .collection(
+              'subjects/$subjectId/parts/$partId/topics/$topicId/questions')
+          .count()
+          .get();
+      return snap.count ?? 0;
+    } catch (e) {
+      debugPrint('fetchTopicQuestionCount error: $e');
+      return 0;
+    }
+  }
+
   /// Fetches [limit] random questions from Firestore.
   /// Falls back to null if Firestore is unavailable.
   Future<List<Question>?> fetchRandomQuestions(

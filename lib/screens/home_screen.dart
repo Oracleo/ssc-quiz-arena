@@ -54,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppViewport(
       builder: (context, viewport) {
         final app = context.watch<AppProvider>();
-        final totalQuestions = getTotalQuestions();
+        final totalQuestions = app.liveCountsLoaded
+            ? app.liveTotalQuestions
+            : getTotalQuestions();
         final totalTopics = getAllTopicIds().length;
         final completedTopics = app.progress.length;
         final donePercent = totalTopics == 0

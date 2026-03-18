@@ -191,6 +191,10 @@ class TopicsScreen extends StatelessWidget {
                                       index: index + 1,
                                       topic: topic,
                                       progress: progress,
+                                      liveCount: app.liveCountsLoaded
+                                          ? app.liveTopicCount(
+                                              subjectId, partId, topic.id)
+                                          : topic.qCount,
                                       accent: accent,
                                       soft: soft,
                                       onTap: () async {
@@ -236,6 +240,7 @@ class _TopicRow extends StatelessWidget {
     required this.index,
     required this.topic,
     required this.progress,
+    required this.liveCount,
     required this.accent,
     required this.soft,
     required this.onTap,
@@ -244,6 +249,7 @@ class _TopicRow extends StatelessWidget {
   final int index;
   final Topic topic;
   final TopicProgress? progress;
+  final int liveCount;
   final Color accent;
   final Color soft;
   final VoidCallback onTap;
@@ -309,8 +315,8 @@ class _TopicRow extends StatelessWidget {
                   ),
                   Text(
                     isDone
-                        ? '${topic.qCount} Qs · ${progress?.bestScore}/${progress?.totalQ}'
-                        : '${topic.qCount} Qs · Ready',
+                        ? '$liveCount Qs · ${progress?.bestScore}/${progress?.totalQ}'
+                        : '$liveCount Qs · Ready',
                     style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 9,

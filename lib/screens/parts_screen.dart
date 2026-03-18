@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../core/constants.dart';
 import '../core/theme.dart';
 import '../data/subjects_data.dart';
+import '../providers/app_provider.dart';
 import '../widgets/widgets.dart';
 
 class PartsScreen extends StatelessWidget {
@@ -27,12 +29,17 @@ class PartsScreen extends StatelessWidget {
       );
     }
 
-    final totalQuestions = subject.parts.fold<int>(
-      0,
-      (sum, part) =>
-          sum +
-          part.topics.fold<int>(0, (partSum, topic) => partSum + topic.qCount),
-    );
+    final app = context.watch<AppProvider>();
+
+    final totalQuestions = app.liveCountsLoaded
+        ? app.liveSubjectTotal(subjectId)
+        : subject.parts.fold<int>(
+            0,
+            (sum, part) =>
+                sum +
+                part.topics
+                    .fold<int>(0, (partSum, topic) => partSum + topic.qCount),
+          );
     final totalTopics =
         subject.parts.fold<int>(0, (sum, part) => sum + part.topics.length);
 
@@ -127,10 +134,14 @@ class PartsScreen extends StatelessWidget {
                               spacing: spacing,
                               runSpacing: spacing,
                               children: subject.parts.map((part) {
-                                final qTotal = part.topics.fold<int>(
-                                  0,
-                                  (sum, topic) => sum + topic.qCount,
-                                );
+                                final qTotal = app.liveCountsLoaded
+                                    ? app.livePartTotal(
+                                        subjectId, part.id)
+                                    : part.topics.fold<int>(
+                                        0,
+                                        (sum, topic) =>
+                                            sum + topic.qCount,
+                                      );
                                 return SizedBox(
                                   width: tileW,
                                   child: _PartTile(

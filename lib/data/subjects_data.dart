@@ -20,17 +20,17 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'paleolithic',
             label: 'Paleolithic Age',
-            qCount: 50,
+            qCount: 326,
           ),
           Topic(
             id: 'mesolithic',
             label: 'Mesolithic Age',
-            qCount: 50,
+            qCount: 55,
           ),
           Topic(
             id: 'neolithic',
             label: 'Neolithic Age',
-            qCount: 50,
+            qCount: 55,
           ),
         ],
       ),
@@ -42,12 +42,12 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'indus',
             label: 'Indus Valley Civilization',
-            qCount: 50,
+            qCount: 55,
           ),
           Topic(
             id: 'vedic',
             label: 'Vedic Period',
-            qCount: 50,
+            qCount: 55,
           ),
         ],
       ),
@@ -59,12 +59,12 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'delhi_sultanate',
             label: 'Delhi Sultanate',
-            qCount: 30,
+            qCount: 55,
           ),
           Topic(
             id: 'mughals',
             label: 'Mughal Empire',
-            qCount: 30,
+            qCount: 55,
           ),
         ],
       ),
@@ -76,12 +76,12 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'british_rule',
             label: 'British Rule in India',
-            qCount: 30,
+            qCount: 55,
           ),
           Topic(
             id: 'freedom',
             label: 'Freedom Struggle',
-            qCount: 30,
+            qCount: 55,
           ),
         ],
       ),
@@ -120,7 +120,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'agriculture',
             label: 'Agriculture in India',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -213,7 +213,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'light',
             label: 'Light & Optics',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -225,7 +225,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'basic_chemistry',
             label: 'Basic Chemistry',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -264,7 +264,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'basic_algebra',
             label: 'Basic Algebra',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -291,7 +291,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'vocabulary',
             label: 'Vocabulary & Synonyms',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -330,7 +330,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'coding',
             label: 'Coding & Decoding',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -357,7 +357,7 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'internet',
             label: 'Internet & Networking',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
@@ -379,12 +379,12 @@ const Map<String, Subject> subjectsData = {
           Topic(
             id: 'awards',
             label: 'Awards & Honours',
-            qCount: 20,
+            qCount: 30,
           ),
           Topic(
             id: 'science_tech',
             label: 'Science & Technology',
-            qCount: 20,
+            qCount: 30,
           ),
         ],
       ),
