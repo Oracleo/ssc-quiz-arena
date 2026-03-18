@@ -90,6 +90,9 @@ build/outputs/
 .DS_Store
 .vscode/settings.json
 
+# Node modules (scripts/ tooling only, not part of Flutter app)
+node_modules/
+
 # Temporary files
 *.swp
 *.tmp

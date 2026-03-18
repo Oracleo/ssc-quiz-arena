@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -193,7 +196,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           final availH =
                               constraints.maxHeight - (vSpacing * (rows - 1));
                           final tileW = availW / cols;
-                          final tileH = availH / rows;
+                          final rawTileH = availH / rows;
+                          final tileH = kIsWeb
+                              ? rawTileH
+                              : math.min(rawTileH, tileW * 1.15);
 
                           return Wrap(
                             spacing: hSpacing,

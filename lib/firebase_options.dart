@@ -32,8 +32,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDwV9qiwKq1ZcKk1EWpvgZHt-yeeAeKBWU',
-    appId: '1:194870317270:android:c5344637c217b8f947b977',
+    apiKey: 'AIzaSyB-wDP_Cs1cnZOHBLwHZ3i6tPFBsV2E4tg',
+    appId: '1:194870317270:android:d9be3c049fad7ea947b977',
     messagingSenderId: '194870317270',
     projectId: 'ssc-quiz-arena',
     storageBucket: 'ssc-quiz-arena.firebasestorage.app',

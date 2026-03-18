@@ -863,7 +863,7 @@ class ProfilePanel extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   _PanelAction(
-                    icon: Icons.mail_outline_rounded,
+                    icon: Icons.support_agent_rounded,
                     label: 'Contact Support',
                     onTap: () => _showSupportDialog(context),
                   ),
@@ -879,8 +879,28 @@ class ProfilePanel extends StatelessWidget {
                       icon: Icons.logout_rounded,
                       label: 'Sign out',
                       onTap: () async {
-                        await app.signOut();
-                        onClose();
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text('Sign Out'),
+                            content: const Text(
+                                'Are you sure you want to sign out?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(ctx, false),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(ctx, true),
+                                child: const Text('Sign Out'),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (confirmed == true) {
+                          await app.signOut();
+                          onClose();
+                        }
                       },
                       isDestructive: true,
                     )
@@ -889,6 +909,25 @@ class ProfilePanel extends StatelessWidget {
                       icon: Icons.login_rounded,
                       label: 'Sign in with Google',
                       onTap: () async {
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text('Sign In'),
+                            content: const Text(
+                                'Sign in with your Google account to sync progress across devices.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(ctx, false),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(ctx, true),
+                                child: const Text('Sign In'),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (confirmed != true) return;
                         final messenger = ScaffoldMessenger.of(context);
                         onClose();
                         final success = await app.signInWithGoogle();

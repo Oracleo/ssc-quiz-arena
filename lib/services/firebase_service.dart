@@ -60,7 +60,11 @@ class FirebaseService {
   }
 
   Future<void> signOut() async {
-    await GoogleSignIn().signOut();
+    if (!kIsWeb) {
+      try {
+        await GoogleSignIn().signOut();
+      } catch (_) {}
+    }
     await _auth.signOut();
   }
 
