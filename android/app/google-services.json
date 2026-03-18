@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "194870317270",
+    "project_id": "ssc-quiz-arena",
+    "storage_bucket": "ssc-quiz-arena.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194870317270:android:d9be3c049fad7ea947b977",
+        "android_client_info": {
+          "package_name": "com.sscquizarena.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194870317270-j616m3mqcs7nhesk41e8c47hf595gpq5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sscquizarena.app",
+            "certificate_hash": "8c7205aa8438060d1c708479dad6fd336b7a2c3e"
+          }
+        },
+        {
+          "client_id": "194870317270-j616m3mqcs7nhesk41e8c47hf595gpq5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sscquizarena.app",
+            "certificate_hash": "07bd82ed154d1cb2c1697aab1695c53936c326bb"
+          }
+        },
+        {
+          "client_id": "194870317270-73m50ih6649tji25d90h6ukifmk8cdgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-wDP_Cs1cnZOHBLwHZ3i6tPFBsV2E4tg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194870317270-73m50ih6649tji25d90h6ukifmk8cdgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
